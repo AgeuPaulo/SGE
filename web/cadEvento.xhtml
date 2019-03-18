@@ -37,24 +37,21 @@
       	<b> Quantidade de Salas necessarias(selecione tambem os tipos):</b>
       	<input name="salas" type="text" maxlength="4" placeholder="Quantidade de salas"/>
 		<br></br>
-		<select name="salas">
-			<option> Auditório</option>
-			<option> Sala de Aula </option>
-			<option> Laboratório de Informática</option>
-			<option> Quadra </option>
-		</select>
-		<input name="Salas disponiveis" list="auditório" />
-		<datalist id="auditório">
-			<option value="Auditório A"/>
-			<option value="Auditorio B"/>
-		</datalist>
-		<input name="Salas disponiveis" list="classroom" />
-		<datalist id="classroom">
-			<option value="Sala de Aula"/>
-			<option value="Laboratório de Informática"/>
-			<option value="Quadra"/>
-			<option value="Teatro"/>
-		</datalist>		
+		<label>
+		<b>Tipos de locais disponiveis:</b>
+		<input type="checkbox" value = "A" name="auditorio"/> Auditorio
+		<input type="checkbox" value="S" name=|"sala"/> Sala de Aula
+		<input type="checkbox" value= "L" name="lab"/> Laboratório de Informática
+		<input type="checkbox" value="Q" name="quadra"/> Quadra
+		</label>
+		<br></br>
+		<b>Classificação indicativa:</b><select name="idade">
+			<option>Livre</option>
+			<option>12 anos</option>
+			<option>16 anos </option>
+			<option>18 anos </option>
+		<br></br>
+		<input type="button" value="Enviar Solicitação"/>	
 		</form>    
 	</h:body>
 </html>
