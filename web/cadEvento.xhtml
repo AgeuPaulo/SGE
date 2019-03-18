@@ -2,60 +2,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>SGE - Cadastro de Evento</title>
-    </h:head>
-    <h:body>
-        <h1 align="center"> SGE - CADASTRO DE EVENTOS </h1>
-      <form>
-        <b>Digite o nome do Evento</b>
-	      <input name="Nome_do_Evento" type="text" maxlenght="50" placeholder="Nome do Evento"/>
-        <br/>
-        <b>Categoria de Interesse:</b><select name = "categoria" type="" MULTIPLE> 
-          <option> Atletismo </option>
-          <option> Astronomia </option>
-          <option> Computação e Tecnologia</option>
-          <option> Historia </option>
-          <option> Moda</option>
-          <option> Auto Estima</option>
-          <option> Outros </option>
-        <br/>
-        <label>
+	<h:head>
+		<title>SGE - Cadastro de Evento</title>
+	</h:head>
+	<h:body>
+		<h1 align="center"> SGE - CADASTRO DE EVENTOS </h1>
+		<form>
+		<b>Digite o nome do Evento</b>
+		<input name="Nome_do_Evento" type="text" maxlenght="50" placeholder="Nome do Evento"/>
+		<br/>
+		<b>Categoria de Interesse:</b><select name = "categoria"> 
+			<option> Atletismo </option>
+			<option> Astronomia </option>
+			<option> Computação e Tecnologia</option>
+			<option> Historia </option>
+			<option> Moda</option>
+			<option> Auto Estima</option>
+			<option> Outros </option>
+		</select>
+		<br/>
+		<label>
         <b>Publico Alvo:</b>
         <input type="checkbox" value="M" name="masculino"/> Masculino 
         <input type="checkbox" value="F"  name="feminino"/> Feminino
         <input type="checkbox" value="E" name="empreendedores"/> Empreendedores
         <input type="checkbox" value="I" name="iniciantes"/> Iniciantes
         </label>
-        <br/>
-	<p>Quantidade de Participantes:</p>
+		<br/>
+		<p><b>Quantidade de Participantes:</b></p>
       	<input name="min_pessoas" type="text" maxlength="4" placeholder="Quantidade maxima de participantes"/> Max.
       	<br/>
       	<input name="max_pessoas" type="text" maxlength="4" placeholder="Quantidade minima de participantes"/> Min.
-      	<p>
-      	<b> Quantidade de Salas necessarias(selecione tambem os tipos):
-      	<input name="salas" type="text" maxlength="4"
-        	placeholder="Quantidade de salas"/>
-	<br></br>
-	<select name="salas">
-		<option> Auditório</option>
-		<option> Sala de Aula </option>
-		<option> Laboratório de Informática</option>
-		<option> Quadra </option>
-	</select>
-	<input name="Salas disponiveis" list="auditório" />
-	<datalist id="auditório">
-		<option value="Auditório A">
-		<option value="Auditorio B">
-	</datalist>
-	<input name="Salas disponiveis" list="classroom" />
-	<datalist id="classroom">
-		<option value="Sala de Aula">
-	<option value="Laboratório de Informática">
-	<option value="Quadra">
-	<option value="Teatro">
-	</datalist>		
-      </form>    
-    </h:body>
+      	<p/>
+      	<b> Quantidade de Salas necessarias(selecione tambem os tipos):</b>
+      	<input name="salas" type="text" maxlength="4" placeholder="Quantidade de salas"/>
+		<br></br>
+		<select name="salas">
+			<option> Auditório</option>
+			<option> Sala de Aula </option>
+			<option> Laboratório de Informática</option>
+			<option> Quadra </option>
+		</select>
+		<input name="Salas disponiveis" list="auditório" />
+		<datalist id="auditório">
+			<option value="Auditório A"/>
+			<option value="Auditorio B"/>
+		</datalist>
+		<input name="Salas disponiveis" list="classroom" />
+		<datalist id="classroom">
+			<option value="Sala de Aula"/>
+			<option value="Laboratório de Informática"/>
+			<option value="Quadra"/>
+			<option value="Teatro"/>
+		</datalist>		
+		</form>    
+	</h:body>
 </html>
-
