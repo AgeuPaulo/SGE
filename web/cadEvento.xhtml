@@ -36,6 +36,25 @@
       	<b> Quantidade de Salas necessarias(selecione tambem os tipos):
       	<input name="salas" type="text" maxlength="4"
         	placeholder="Quantidade de salas"/>
+	<br></br>
+	<select name="salas">
+		<option> Auditório</option>
+		<option> Sala de Aula </option>
+		<option> Laboratório de Informática</option>
+		<option> Quadra </option>
+	</select>
+	<input name="Salas disponiveis" list="auditório" />
+	<datalist id="auditório">
+		<option value="Auditório A">
+		<option value="Auditorio B">
+	</datalist>
+	<input name="Salas disponiveis" list="classroom" />
+	<datalist id="classroom">
+		<option value="Sala de Aula">
+	<option value="Laboratório de Informática">
+	<option value="Quadra">
+	<option value="Teatro">
+	</datalist>		
       </form>    
     </h:body>
 </html>
