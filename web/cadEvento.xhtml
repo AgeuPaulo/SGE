@@ -6,7 +6,28 @@
         <title>SGE - Cadastro de Evento</title>
     </h:head>
     <h:body>
-        
+        <h1 align="center"> SGE - CADASTRO DE EVENTOS </h1>
+      <form>
+        <b>Digite o nome do Evento</b>
+	      <input name="Nome_do_Evento" type="text" maxlenght="50" placeholder="Nome do Evento"/>
+        <p></p>
+        <b>Categoria de Interesse:</b><select name = "categoria" type=""> 
+          <option> Atletismo </option>
+          <option> Astronomia </option>
+          <option> Computação e Tecnologia</option>
+          <option> Historia </option>
+          <option> Moda</option>
+          <option> Auto Estima</option>
+          <option> Outros </option>
+        <p></p>
+        <label>
+        <b>Publico Alvo:</b>
+        <input type="checkbox" value="M" name="masculino"/> Masculino 
+        <input type="checkbox" value="F"  name="feminino"/> Feminino
+        <input type="checkbox" value="E" name="empreendedores"/> Empreendedores
+        <input type="checkbox" value="I" name="iniciantes"/> Iniciantes
+        </label>
+      </form>    
     </h:body>
 </html>
 
