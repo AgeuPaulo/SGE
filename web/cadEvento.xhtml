@@ -8,50 +8,74 @@
 	<h:body>
 		<h1 align="center"> SGE - CADASTRO DE EVENTOS </h1>
 		<form>
-		<b>Digite o nome do Evento</b>
-		<input name="Nome_do_Evento" type="text" maxlenght="50" placeholder="Nome do Evento"/>
-		<br/>
-		<b>Categoria de Interesse:</b><select name = "categoria"> 
-			<option> Atletismo </option>
-			<option> Astronomia </option>
-			<option> Computação e Tecnologia</option>
-			<option> Historia </option>
-			<option> Moda</option>
-			<option> Auto Estima</option>
-			<option> Outros </option>
-		</select>
-		<br/>
-		<label>
-        <b>Publico Alvo:</b>
-        <input type="checkbox" value="M" name="masculino"/> Masculino 
-        <input type="checkbox" value="F"  name="feminino"/> Feminino
-        <input type="checkbox" value="E" name="empreendedores"/> Empreendedores
-        <input type="checkbox" value="I" name="iniciantes"/> Iniciantes
-        </label>
-		<br/>
-		<p><b>Quantidade de Participantes:</b></p>
-      	<input name="min_pessoas" type="text" maxlength="4" placeholder="Quantidade maxima de participantes"/> Max.
-      	<br/>
-      	<input name="max_pessoas" type="text" maxlength="4" placeholder="Quantidade minima de participantes"/> Min.
-      	<p/>
-      	<b> Quantidade de Salas necessarias(selecione tambem os tipos):</b>
-      	<input name="salas" type="text" maxlength="4" placeholder="Quantidade de salas"/>
-		<br></br>
-		<label>
-		<b>Tipos de locais disponiveis:</b>
-		<input type="checkbox" value = "A" name="auditorio"/> Auditorio
-		<input type="checkbox" value="S" name=|"sala"/> Sala de Aula
-		<input type="checkbox" value= "L" name="lab"/> Laboratório de Informática
-		<input type="checkbox" value="Q" name="quadra"/> Quadra
-		</label>
-		<br></br>
-		<b>Classificação indicativa:</b><select name="idade">
-			<option>Livre</option>
-			<option>12 anos</option>
-			<option>16 anos </option>
-			<option>18 anos </option>
-		<br></br>
-		<input type="button" value="Enviar Solicitação"/>	
-		</form>    
+                        <table border="all" bgcolor="white" width="100%">
+                            <tr ><label>
+                                    <td width="200" align="right">Nome do Evento:</td>
+                                    <td width="600px" >
+                                        <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite o Nome do Evento" />
+                                    </td>
+                                </label>
+                            </tr>
+                            <td width="200" align="right">Categoria de Interesse:</td>
+                            <td>
+                                <select>
+                                    <option selected="true">Atletismo</option>
+                                    <option>Astronomia</option>
+                                    <option>Computação e Tecnologia</option>
+                                    <option>História</option>
+                                    <option>Moda</option>
+                                    <option>Auto Estima</option>
+                                    <option>Outros</option>
+                                </select>
+                            </td>
+                            <tr>
+                                <label>
+                                    <td width="200" align="right">Público Alvo:</td>
+                                    <td>Masculino<input name="sexo" type="radio" value="M"/>
+                                        Feminino<input name="sexo" type="radio" value="F"/>   
+                                        Empreendedores<input name="empreendedores" type="radio" value="E"/>
+                                        Iniciantes<input name="iniciantes" type="radio" value="I"/>
+                                    </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <label>
+                                    <td width="200" align="right">Quantidade de Participantes:</td>
+                                    <td width="600px" >
+                                        Máximo <input name="máximo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade máxima de participantes"/>
+                                        <br/> Mínimo <input name="mínimo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade minima de participantes"/>
+                                    </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <label>
+                                    <td width="200" align="right">Quantidade de Salas Necessárias:</td>
+                                    <td width="600px" >
+                                        <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite a Quantidade de Salas" />
+                                    </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <label>
+                                    <td width="200" align="right">Tipos de Locais Disponíveis</td>
+                                    <td>Auditório<input name="gp" type="checkbox"/>
+                                        Sala de Aula<input name="gp" type="checkbox"/>
+                                        Laboratório de Informática<input name="gp" type="checkbox" />
+                                        Quadra<input name="gp" type="checkbox" /></td>
+                                </label>
+                            </tr>
+                            <td width="200" align="right">Classificação Indicativa:</td>
+                            <td>
+                                <select>
+                                    <option selected="true">Livre</option>
+                                    <option>12 anos</option>
+                                    <option>16 anos</option>
+                                    <option>18 anos</option>
+                                </select>
+                            </td>
+                        </table>
+                        <br></br>
+                        <input type="button" value="Enviar Solicitação"/>
+                    </form>
 	</h:body>
 </html>
