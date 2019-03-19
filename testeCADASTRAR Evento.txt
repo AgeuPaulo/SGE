@@ -1,0 +1,13 @@
+FUNCIONALIDADE: Cadastro e gerir eventos
+     o sistema deve prover o controle do evento e cadastrando evento.
+     Dado que o sistema tenha dia e horario disponivel, o usuario podera fazer
+o cadastro. O sistema liberará o cadastro, assim que o cliente preencher as informações 
+solicitadas pelo sistema 
+
+Cenario: Cadastro de evento
+Dado que o usuario queira um evento de atletismo
+E seu publico alvo seja feminino
+Quando ele selecionar o publico como feminino
+E escolhera quantidade de particpante e de salas
+Então aparecerá os tipos de sala
+E por fim será cadastrado
