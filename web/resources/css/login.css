@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/03/2019, 02:04:26
+    Author     : Ageeu
+*/
+.form-signin {
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+    background-color: white;
+    filter:alpha(opacity=90);
+    opacity: 0.9;
+    -moz-opacity:0.9;
+    -webkit-opacity:0.9; 
+    border-radius: 30px 30px 30px 30px;
+}
+body{
+    padding-top: 60px;
+    background-image: url("../imagens/bg.jpg");
+    background-size:cover;
+}
+#bEntrar{
+    background-color: #002060;
+    border-radius: 10px 10px 10px 10px;
+}
+#bEntrar:hover {
+    background-color: #000066 
+}
+
+#esqueceu-senha{
+    float: right;
+    font-size: 12px;
+}
+

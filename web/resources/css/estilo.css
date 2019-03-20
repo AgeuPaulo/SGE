@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/03/2019, 23:49:00
+    Author     : Ageu
+*/
+body{
+    background-color: #002060;
+}
+.tab{
+    background-image: linear-gradient(#002060, #002060);
+    color: #ffffff;
+    font-weight: normal;
+    font-family: serif;
+    text-align: center;
+}
+.ui-datatable-header ui-widget-header ui-corner-top{
+    background-color: #002060;
+}
