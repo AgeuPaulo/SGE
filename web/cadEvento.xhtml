@@ -4,142 +4,147 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>SGE - Cadastro de Evento</title>
         <link href="resources/css/estilo.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
-        <h:panelGrid columns="2">
-            <div>
-                <p:fieldset legend="Novo Evento" toggleable="true" toggleSpeed="500">
-                    <form>
-                        <table border="all" bgcolor="white" width="100%">
-                            <tr ><label>
-                                    <td width="200" align="right">Nome do Evento:</td>
-                                    <td width="600px" >
-                                        <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite o Nome do Evento" />
-                                    </td>
-                                </label>
-                            </tr>
-                            <td width="200" align="right">Categoria de Interesse:</td>
-                            <td>
-                                <select>
-                                    <option selected="true">Atletismo</option>
-                                    <option>Astronomia</option>
-                                    <option>Computação e Tecnologia</option>
-                                    <option>História</option>
-                                    <option>Moda</option>
-                                    <option>Auto Estima</option>
-                                    <option>Outros</option>
-                                </select>
-                            </td>
-                            <tr>
-                                <label>
-                                    <td width="200" align="right">Público Alvo:</td>
-                                    <td>Masculino<input name="sexo" type="radio" value="M"/>
-                                        Feminino<input name="sexo" type="radio" value="F"/>   
-                                        Empreendedores<input name="empreendedores" type="radio" value="E"/>
-                                        Iniciantes<input name="iniciantes" type="radio" value="I"/>
-                                    </td>
-                                </label>
-                            </tr>
-                            <tr>
-                                <label>
-                                    <td width="200" align="right">Quantidade de Participantes:</td>
-                                    <td width="600px" >
-                                        Máximo <input name="máximo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade máxima de participantes"/>
-                                        <br/> Mínimo <input name="mínimo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade minima de participantes"/>
-                                    </td>
-                                </label>
-                            </tr>
-                            <tr>
-                                <label>
-                                    <td width="200" align="right">Quantidade de Salas Necessárias:</td>
-                                    <td width="600px" >
-                                        <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite a Quantidade de Salas" />
-                                    </td>
-                                </label>
-                            </tr>
-                            <tr>
-                                <label>
-                                    <td width="200" align="right">Tipos de Locais Disponíveis</td>
-                                    <td>Auditório<input name="gp" type="checkbox"/>
-                                        Sala de Aula<input name="gp" type="checkbox"/>
-                                        Laboratório de Informática<input name="gp" type="checkbox" />
-                                        Quadra<input name="gp" type="checkbox" /></td>
-                                </label>
-                            </tr>
-                            <td width="200" align="right">Classificação Indicativa:</td>
-                            <td>
-                                <select>
-                                    <option selected="true">Livre</option>
-                                    <option>12 anos</option>
-                                    <option>16 anos</option>
-                                    <option>18 anos</option>
-                                </select>
-                            </td>
-                            <tr>
-                                <label>
-                                    <td width="200" align="right">Data início do evento:</td>
+        <ui:composition template="./WEB-INF/template/modelo.xhtml">
+            <ui:define name="conteudo">
+                <h:panelGrid columns="2">
+                    <div>
+                        <p:fieldset legend="Novo Evento" toggleable="true" toggleSpeed="500">
+                            <form>
+                                <table border="all" bgcolor="white" width="100%">
+                                    <tr ><label>
+                                            <td width="200" align="right">Nome do Evento:</td>
+                                            <td width="600px" >
+                                                <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite o Nome do Evento" />
+                                            </td>
+                                        </label>
+                                    </tr>
+                                    <td width="200" align="right">Categoria de Interesse:</td>
                                     <td>
-                                        <b:dateTimePicker 
-                                                      mode="toggle-icon" 
-                                                      showButtonPanel="true" 
-                                                      format="DD/MM/YYYY"/>
+                                        <select>
+                                            <option selected="true">Atletismo</option>
+                                            <option>Astronomia</option>
+                                            <option>Computação e Tecnologia</option>
+                                            <option>História</option>
+                                            <option>Moda</option>
+                                            <option>Auto Estima</option>
+                                            <option>Outros</option>
+                                        </select>
                                     </td>
-                                </label>
-                            </tr>
-                            <tr>
-                                <label>
-                                    <td width="200" align="right">Data fim do evento:</td>
+                                    <tr>
+                                        <label>
+                                            <td width="200" align="right">Público Alvo:</td>
+                                            <td>Masculino<input name="sexo" type="radio" value="M"/>
+                                                Feminino<input name="sexo" type="radio" value="F"/>   
+                                                Empreendedores<input name="empreendedores" type="radio" value="E"/>
+                                                Iniciantes<input name="iniciantes" type="radio" value="I"/>
+                                            </td>
+                                        </label>
+                                    </tr>
+                                    <tr>
+                                        <label>
+                                            <td width="200" align="right">Quantidade de Participantes:</td>
+                                            <td width="600px" >
+                                                Máximo <input name="máximo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade máxima de participantes"/>
+                                                <br/> Mínimo <input name="mínimo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade minima de participantes"/>
+                                            </td>
+                                        </label>
+                                    </tr>
+                                    <tr>
+                                        <label>
+                                            <td width="200" align="right">Quantidade de Salas Necessárias:</td>
+                                            <td width="600px" >
+                                                <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite a Quantidade de Salas" />
+                                            </td>
+                                        </label>
+                                    </tr>
+                                    <tr>
+                                        <label>
+                                            <td width="200" align="right">Tipos de Locais Disponíveis</td>
+                                            <td>Auditório<input name="gp" type="checkbox"/>
+                                                Sala de Aula<input name="gp" type="checkbox"/>
+                                                Laboratório de Informática<input name="gp" type="checkbox" />
+                                                Quadra<input name="gp" type="checkbox" /></td>
+                                        </label>
+                                    </tr>
+                                    <td width="200" align="right">Classificação Indicativa:</td>
                                     <td>
-                                        <b:dateTimePicker 
-                                                      mode="toggle-icon" 
-                                                      showButtonPanel="true" 
-                                                      format="DD/MM/YYYY"/>
+                                        <select>
+                                            <option selected="true">Livre</option>
+                                            <option>12 anos</option>
+                                            <option>16 anos</option>
+                                            <option>18 anos</option>
+                                        </select>
                                     </td>
-                                </label>
-                            </tr>
-                        </table>
-                        <br></br>
-                        <input type="button" value="Enviar Solicitação"/>
-                    </form>
-                </p:fieldset>
-            </div>
-            <div>
-                <h:form id="formulario">
-                    <p:dataTable id="tabela" var="e" style="background-color: #000;"
-                                 emptyMessage="Nenhum registro incluido." paginator="true" rows="10">                    
-                        <f:facet name="header">  
-                            Lista de eventos
-                        </f:facet>
-                        <p:column headerText="ID" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Descrição" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Categoria" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Público Alvo" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Capacidade" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Qtd. Salas" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Classificação" class="tab">
-                            <h:outputText  />
-                        </p:column>
-                        <p:column headerText="Editar/Excluir" class="tab">
-                        </p:column>
-                    </p:dataTable>
-                </h:form>  
-            </div>
-        </h:panelGrid>
+                                    <tr>
+                                        <label>
+                                            <td width="200" align="right">Data início do evento:</td>
+                                            <td>
+                                                <b:dateTimePicker 
+                                                    mode="toggle-icon" 
+                                                    showButtonPanel="true" 
+                                                    format="DD/MM/YYYY"/>
+                                            </td>
+                                        </label>
+                                    </tr>
+                                    <tr>
+                                        <label>
+                                            <td width="200" align="right">Data fim do evento:</td>
+                                            <td>
+                                                <b:dateTimePicker 
+                                                    mode="toggle-icon" 
+                                                    showButtonPanel="true" 
+                                                    format="DD/MM/YYYY"/>
+                                            </td>
+                                        </label>
+                                    </tr>
+                                </table>
+                                <br></br>
+                                <input type="button" value="Enviar Solicitação"/>
+                            </form>
+                        </p:fieldset>
+                    </div>
+                    <div>
+                        <h:form id="formulario">
+                            <p:dataTable id="tabela" var="e" style="background-color: #000;"
+                                         emptyMessage="Nenhum registro incluido." paginator="true" rows="10">                    
+                                <f:facet name="header">  
+                                    Lista de eventos
+                                </f:facet>
+                                <p:column headerText="ID" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Descrição" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Categoria" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Público Alvo" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Capacidade" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Qtd. Salas" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Classificação" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Editar/Excluir" class="tab">
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>  
+                    </div>
+                </h:panelGrid>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

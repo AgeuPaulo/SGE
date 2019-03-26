@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>SGE - Agenda da Programação</title>
+        <link href="resources/css/estilo.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/modelo.xhtml">
+            <ui:define name="conteudo">
+                <p:panel header="AGENDA" toggleable="true">
+                    <h:form>
+                        <br/>
+                        <h:panelGrid columns="1" cellpadding="15px" cellspacing="15px" width="40%">
+                            <b:selectOneMenu fieldSize="sm" label="Lista de eventos">
+                                <f:selectItem itemLabel="Selecione o evento" itemValue=""/>
+                            </b:selectOneMenu>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="60%">
+                            <b:inputText  placeholder="Descrição" disabled="true"/>
+                            <b:inputText  placeholder="Categoria" disabled="true"/>
+                            <b:inputText  placeholder="Capacidade Total" disabled="true"/>
+                            <b:inputText  placeholder="Classificação Indicativa" disabled="true"/>
+                        </h:panelGrid>
+                    </h:form>
+                    <hr></hr>
+                    <h:form>
+                        <b:dataTable 
+                                     var="pr">
+                            <b:dataTableColumn value="#{pr.idEvento.descricao}" />
+                            <b:dataTableColumn value="#{pr.tipo}" />
+                            <b:dataTableColumn value="#{pr.descricao}" />
+                            <b:dataTableColumn value="#{pr.responsavel}"/>
+                            <b:dataTableColumn value="#{pr.tipoLocal}" />
+                            <b:dataTableColumn value="#{pr.localEvento}" />
+                            <b:dataTableColumn value="#{pr.dataProg}">                             
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

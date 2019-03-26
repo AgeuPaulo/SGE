@@ -1,12 +1,113 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>SGE - Cadastro de Programação</title>
+        <link href="resources/css/estilo.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="./WEB-INF/template/modelo.xhtml">
+            <ui:define name="conteudo">
+                <p:messages id="messages" />
+                <p:panel header="CADASTRO DE PROGRAMAÇÃO">
+                    <h:form>
+                        <br/>                     
+                        <h:panelGrid columns="1" cellpadding="15px" cellspacing="15px" width="100%">
+                            <p:commandButton title="Adicionar"  label="Programação" onclick="PF('cadProgramacao').show();" icon="ui-icon-plusthick" type="button" />
+                            <br/>
+                        </h:panelGrid>
+                    </h:form>
+                    <h:form>
+                        <p:dialog header="Cadastrar nova programação" widgetVar="cadProgramacao" minHeight="70" width="60%">
+                            <h:panelGrid columns="2" width="40%">
+                                <b:selectOneMenu fieldSize="sm" label="Lista de Evento">
+                                    <f:selectItem itemLabel="Selecione o evento" itemValue=""/>
+                                </b:selectOneMenu>   
+                            </h:panelGrid>
+                            <hr></hr>
+                            <h:panelGrid columns="2" width="100%">
+                                <h:outputText value="Tipo"/>
+                                <h:panelGrid columns="6" cellpadding="15px" cellspacing="15px" width="100%">
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipo}" itemLabel="Palestra " itemValue="Palestra" />
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipo}" itemLabel="Workshop" itemValue="Workshop" />
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipo}" itemLabel="Minicurso" itemValue="Minicurso" />
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipo}" itemLabel="Curso" itemValue="Curso" />
+                                </h:panelGrid>
+                                <h:outputText value="Descrição"/>
+                                <b:inputTextarea  fieldSize="sm"/>                               
+                                <h:outputText value="Responsável"/>
+                                <b:inputText  fieldSize="sm" />
+                                <h:outputText value="Tipo de local"/>
+                                <h:panelGrid columns="6" cellpadding="15px" cellspacing="15px" width="100%">
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Auditório " itemValue="Auditório" />
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Sala de Aula" itemValue="Sala de Aula" />
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Laboratório de Informática" itemValue="Laboratório de Informática" />
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Quadra Esportiva" itemValue="Quadra Esportiva" />    
+                                </h:panelGrid>                   
+                                <h:outputText value="Descrição do local"/>
+                                <b:inputText  fieldSize="sm" />
+                                <h:outputText value="Data/Horário"/>
+                                <b:dateTimePicker
+                                    fieldSize="sm"
+                                    show-time="true"
+                                    mode="toggle-icon" 
+                                    showButtonPanel="true"/>                              
+                            </h:panelGrid>
+                            <hr></hr>
+                            <b:panelGrid columns="1">
+                                <b:commandButton value="Enviar solicitação" look="success" />
+                            </b:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                    <h:panelGrid>
+                        <h:form id="formulario">
+                            <p:dataTable  id="tabela" var="ev" style="background-color: #000;"
+                                          emptyMessage="Nenhum registro incluido." paginator="true" rows="10" > 
+                                <p:column headerText="ID" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Tipo" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Descrição" class="tab">
+                                    <h:outputText  />
+                                </p:column>                             
+                                <p:column headerText="Data" class="tab">
+                                    <h:outputText  >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Horario" class="tab">
+                                    <h:outputText >
+                                        <f:convertDateTime pattern="HH:mm" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Responsável" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Tipo de Local" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Descrição do Local" class="tab">
+                                    <h:outputText  />
+                                </p:column>
+                                <p:column headerText="Excluir" class="tab">
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>  
+                    </h:panelGrid>
+                    <hr></hr>
+                    <h:form>
+                        <b:commandButton action="agendaProgramacao" value="Visualizar Agenda" look="primary" />
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

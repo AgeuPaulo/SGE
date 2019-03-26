@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <link href="resources/css/estilo.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>.
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="50">
+                <b:navBar brand="SGE" brand-img="resources/imagens/logo_transparente.png" brandHref="dashboard.xhtml" inverse="true" fixed="top">
+                    <b:navbarLinks pull="right"><b:navLink value="Sair "></b:navLink>
+                    </b:navbarLinks>
+                    <b:navbarLinks pull="right"><b:navLink value="Olá," ></b:navLink>
+                    </b:navbarLinks>
+                </b:navBar>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" size="210" class="lateral">
+                <h:form>
+                    <p:menu>
+                        <p:submenu label="Cadastros">
+                            <p:menuitem value="Evento" url="cadEvento.xhtml"/>
+                            <p:menuitem value="Programação" url="cadProgramacao.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Financeiro">                            
+                            <p:menuitem value="Gastos" url="moduloFinanceiro.xhtml"/>
+                            <p:menuitem value="Relatório"/>
+                        </p:submenu>
+                        <p:submenu label="Agenda">
+                            <p:menuitem value="Programação" url="agendaProgramacao.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Administrador" >                            
+                            <p:menuitem value="Novo usuário" url="cadastroUsuario.xhtml"/>
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" size="50" class="rodape">
+                <p align="center">Sistema de Gestão de Eventos - Unit 2019</p>
+            </p:layoutUnit>
+            <p:layoutUnit position="center" class="conteudo">
+                <ui:insert name="conteudo"> </ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
