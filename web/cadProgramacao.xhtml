@@ -8,13 +8,22 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>SGE - Cadastro de Programação</title>
-        <link href="resources/css/estilo.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
         <ui:composition template="./WEB-INF/template/modelo.xhtml">
             <ui:define name="conteudo">
-                <p:messages id="messages" />
                 <p:panel header="CADASTRO DE PROGRAMAÇÃO">
+                    <h:form>
+                        <br/>
+                        <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="40%" >
+                            <b:selectOneMenu value="#{programacaoBean.evento}" fieldSize="sm" label="Lista de eventos" converter="generic">
+                                <f:selectItem itemLabel="Selecione o evento" itemValue="#{null}"/>
+                                    <f:selectItems value="#{eventoBean.lista}" var="evento" itemValue="#{evento}" itemLabel="#{evento.descricao}"/>
+                            </b:selectOneMenu>
+                            &nbsp;
+                            <b:commandButton action="#{programacaoBean.listaPorEvento(programacaoBean.evento)}"  value="Buscar" look="success" />
+                        </h:panelGrid>
+                    </h:form>
                     <h:form>
                         <br/>                     
                         <h:panelGrid columns="1" cellpadding="15px" cellspacing="15px" width="100%">
@@ -25,8 +34,9 @@
                     <h:form>
                         <p:dialog header="Cadastrar nova programação" widgetVar="cadProgramacao" minHeight="70" width="60%">
                             <h:panelGrid columns="2" width="40%">
-                                <b:selectOneMenu fieldSize="sm" label="Lista de Evento">
-                                    <f:selectItem itemLabel="Selecione o evento" itemValue=""/>
+                                <b:selectOneMenu fieldSize="sm" value="#{programacaoBean.evento}" label="Lista de Evento" converter="generic">
+                                    <f:selectItem itemLabel="Selecione o evento" itemValue="#{null}"/>
+                                    <f:selectItems value="#{eventoBean.lista}" var="evento" itemValue="#{evento}" itemLabel="#{evento.descricao}"/>
                                 </b:selectOneMenu>   
                             </h:panelGrid>
                             <hr></hr>
@@ -39,20 +49,21 @@
                                     <b:radiobutton value="#{programacaoBean.programacao.tipo}" itemLabel="Curso" itemValue="Curso" />
                                 </h:panelGrid>
                                 <h:outputText value="Descrição"/>
-                                <b:inputTextarea  fieldSize="sm"/>                               
+                                <b:inputTextarea value="#{programacaoBean.programacao.descricao}" fieldSize="sm"/>                               
                                 <h:outputText value="Responsável"/>
-                                <b:inputText  fieldSize="sm" />
+                                <b:inputText value="#{programacaoBean.programacao.responsavel}" fieldSize="sm" />
                                 <h:outputText value="Tipo de local"/>
                                 <h:panelGrid columns="6" cellpadding="15px" cellspacing="15px" width="100%">
                                     <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Auditório " itemValue="Auditório" />
                                     <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Sala de Aula" itemValue="Sala de Aula" />
                                     <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Laboratório de Informática" itemValue="Laboratório de Informática" />
-                                    <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Quadra Esportiva" itemValue="Quadra Esportiva" />    
+                                    <b:radiobutton value="#{programacaoBean.programacao.tipoLocal}" itemLabel="Quadra Esportiva" itemValue="Quadra Esportiva" />
                                 </h:panelGrid>                   
                                 <h:outputText value="Descrição do local"/>
-                                <b:inputText  fieldSize="sm" />
+                                <b:inputText value="#{programacaoBean.programacao.localEvento}" fieldSize="sm" />
                                 <h:outputText value="Data/Horário"/>
                                 <b:dateTimePicker
+                                    value="#{programacaoBean.programacao.dataProg}"
                                     fieldSize="sm"
                                     show-time="true"
                                     mode="toggle-icon" 
@@ -60,43 +71,51 @@
                             </h:panelGrid>
                             <hr></hr>
                             <b:panelGrid columns="1">
-                                <b:commandButton value="Enviar solicitação" look="success" />
+                                <b:commandButton value="Enviar solicitação" action="#{programacaoBean.cadastrarProgramacao()}" look="success" />
                             </b:panelGrid>
                         </p:dialog>
                     </h:form>
                     <h:panelGrid>
                         <h:form id="formulario">
-                            <p:dataTable  id="tabela" var="ev" style="background-color: #000;"
-                                          emptyMessage="Nenhum registro incluido." paginator="true" rows="10" > 
+                            <p:dataTable value="#{programacaoBean.listaPorEvento(programacaoBean.evento)}" id="tabela" var="ev" style="background-color: #000;"
+                                         emptyMessage="Nenhum registro incluido." paginator="true" rows="10" > 
                                 <p:column headerText="ID" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{ev.idProg}" />
                                 </p:column>
                                 <p:column headerText="Tipo" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{ev.tipo}" />
                                 </p:column>
                                 <p:column headerText="Descrição" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{ev.descricao}" />
                                 </p:column>                             
                                 <p:column headerText="Data" class="tab">
-                                    <h:outputText  >
+                                    <h:outputText value="#{ev.dataProg}" >
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:outputText>
                                 </p:column>
                                 <p:column headerText="Horario" class="tab">
-                                    <h:outputText >
+                                    <h:outputText value="#{ev.dataProg.time}">
                                         <f:convertDateTime pattern="HH:mm" />
                                     </h:outputText>
                                 </p:column>
                                 <p:column headerText="Responsável" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{ev.responsavel}" />
                                 </p:column>
                                 <p:column headerText="Tipo de Local" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{ev.tipoLocal}" />
                                 </p:column>
                                 <p:column headerText="Descrição do Local" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{ev.localEvento}" />
                                 </p:column>
                                 <p:column headerText="Excluir" class="tab">
+                                     <h:form>
+                                         <p:commandButton action="#{programacaoBean.excluirProgramacao()}" 
+                                                         icon="ui-icon-trash" 
+                                                         title="Remover"
+                                                         process="@form" update=":formulario:tabela">                          
+                                             <f:setPropertyActionListener value="#{ev}" target="#{programacaoBean.programacao}" />
+                                        </p:commandButton>
+                                    </h:form>
                                 </p:column>
                             </p:dataTable>
                         </h:form>  

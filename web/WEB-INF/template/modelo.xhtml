@@ -12,9 +12,9 @@
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="50">
                 <b:navBar brand="SGE" brand-img="resources/imagens/logo_transparente.png" brandHref="dashboard.xhtml" inverse="true" fixed="top">
-                    <b:navbarLinks pull="right"><b:navLink value="Sair "></b:navLink>
+                    <b:navbarLinks pull="right"><b:navLink value="Sair " action="#{usuarioBean.logout()}"></b:navLink>
                     </b:navbarLinks>
-                    <b:navbarLinks pull="right"><b:navLink value="Olá," ></b:navLink>
+                    <b:navbarLinks pull="right"><b:navLink value="Olá, #{usuarioBean.logado.login}" ></b:navLink>
                     </b:navbarLinks>
                 </b:navBar>
             </p:layoutUnit>
@@ -22,15 +22,15 @@
                 <h:form>
                     <p:menu>
                         <p:submenu label="Cadastros">
-                            <p:menuitem value="Evento" url="cadEvento.xhtml"/>
-                            <p:menuitem value="Programação" url="cadProgramacao.xhtml"/>
+                            <p:menuitem value="Novo evento" url="cadEvento.xhtml"/>
+                            <p:menuitem value="Nova programação" url="cadProgramacao.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Financeiro">                            
                             <p:menuitem value="Gastos" url="moduloFinanceiro.xhtml"/>
                             <p:menuitem value="Relatório"/>
                         </p:submenu>
                         <p:submenu label="Agenda">
-                            <p:menuitem value="Programação" url="agendaProgramacao.xhtml"/>
+                            <p:menuitem value="Programação dos Eventos" url="agendaProgramacao.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Administrador" >                            
                             <p:menuitem value="Novo usuário" url="cadastroUsuario.xhtml"/>

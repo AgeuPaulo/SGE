@@ -13,132 +13,136 @@
     <h:body>
         <ui:composition template="./WEB-INF/template/modelo.xhtml">
             <ui:define name="conteudo">
+                <p:growl id="message" showDetail="true" />
                 <h:panelGrid columns="2">
                     <div>
-                        <p:fieldset legend="Novo Evento" toggleable="true" toggleSpeed="500">
-                            <form>
-                                <table border="all" bgcolor="white" width="100%">
-                                    <tr ><label>
-                                            <td width="200" align="right">Nome do Evento:</td>
-                                            <td width="600px" >
-                                                <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite o Nome do Evento" />
-                                            </td>
-                                        </label>
-                                    </tr>
-                                    <td width="200" align="right">Categoria de Interesse:</td>
-                                    <td>
-                                        <select>
-                                            <option selected="true">Atletismo</option>
-                                            <option>Astronomia</option>
-                                            <option>Computação e Tecnologia</option>
-                                            <option>História</option>
-                                            <option>Moda</option>
-                                            <option>Auto Estima</option>
-                                            <option>Outros</option>
-                                        </select>
-                                    </td>
-                                    <tr>
-                                        <label>
-                                            <td width="200" align="right">Público Alvo:</td>
-                                            <td>Masculino<input name="sexo" type="radio" value="M"/>
-                                                Feminino<input name="sexo" type="radio" value="F"/>   
-                                                Empreendedores<input name="empreendedores" type="radio" value="E"/>
-                                                Iniciantes<input name="iniciantes" type="radio" value="I"/>
-                                            </td>
-                                        </label>
-                                    </tr>
-                                    <tr>
-                                        <label>
-                                            <td width="200" align="right">Quantidade de Participantes:</td>
-                                            <td width="600px" >
-                                                Máximo <input name="máximo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade máxima de participantes"/>
-                                                <br/> Mínimo <input name="mínimo de pessoas" type="text" size="50" maxlength="50"  placeholder="Quantidade minima de participantes"/>
-                                            </td>
-                                        </label>
-                                    </tr>
-                                    <tr>
-                                        <label>
-                                            <td width="200" align="right">Quantidade de Salas Necessárias:</td>
-                                            <td width="600px" >
-                                                <input name="nome" type="text" size="50" maxlength="50" placeholder="Digite a Quantidade de Salas" />
-                                            </td>
-                                        </label>
-                                    </tr>
-                                    <tr>
-                                        <label>
-                                            <td width="200" align="right">Tipos de Locais Disponíveis</td>
-                                            <td>Auditório<input name="gp" type="checkbox"/>
-                                                Sala de Aula<input name="gp" type="checkbox"/>
-                                                Laboratório de Informática<input name="gp" type="checkbox" />
-                                                Quadra<input name="gp" type="checkbox" /></td>
-                                        </label>
-                                    </tr>
-                                    <td width="200" align="right">Classificação Indicativa:</td>
-                                    <td>
-                                        <select>
-                                            <option selected="true">Livre</option>
-                                            <option>12 anos</option>
-                                            <option>16 anos</option>
-                                            <option>18 anos</option>
-                                        </select>
-                                    </td>
-                                    <tr>
-                                        <label>
-                                            <td width="200" align="right">Data início do evento:</td>
-                                            <td>
-                                                <b:dateTimePicker 
-                                                    mode="toggle-icon" 
-                                                    showButtonPanel="true" 
-                                                    format="DD/MM/YYYY"/>
-                                            </td>
-                                        </label>
-                                    </tr>
-                                    <tr>
-                                        <label>
-                                            <td width="200" align="right">Data fim do evento:</td>
-                                            <td>
-                                                <b:dateTimePicker 
-                                                    mode="toggle-icon" 
-                                                    showButtonPanel="true" 
-                                                    format="DD/MM/YYYY"/>
-                                            </td>
-                                        </label>
-                                    </tr>
-                                </table>
-                                <br></br>
-                                <input type="button" value="Enviar Solicitação"/>
-                            </form>
-                        </p:fieldset>
+                        <p:panel header="CADASTRO DE EVENTOS" toggleable="true">
+                            <h:form>
+                                <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="90%">
+                                    <h:outputText value="Nome do evento"  />  
+                                    <b:inputText fieldSize="sm" name="nome" value="#{eventoBean.evento.descricao}" />
+                                    <p:row>
+                                        <h:outputText value="Categoria"/>&nbsp;
+                                        <p:commandButton title="Adicionar" onclick="PF('cadCategoria').show();" icon="ui-icon-plusthick" type="button" />
+                                    </p:row>
+                                    <b:selectOneMenu value="#{eventoBean.categoria}" converter="generic" fieldSize="sm">
+                                        <f:selectItem itemLabel="Selecione uma categoria" itemValue="#{null}" />
+                                        <f:selectItems value="#{categoriaBean.lista}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
+                                    </b:selectOneMenu>
+                                    <p:row>
+                                        <h:outputText value="Publico Alvo"/>&nbsp;
+                                        <p:commandButton title="Adicionar" onclick="PF('cadPublico').show();" icon="ui-icon-plusthick" type="button" />
+                                    </p:row>
+                                    <b:selectOneMenu value="#{eventoBean.publico}" converter="generic" fieldSize="sm">
+                                        <f:selectItem itemLabel="Selecione o público" itemValue="#{null}" />
+                                        <f:selectItems value="#{publicoBean.lista}" var="publico" itemValue="#{publico}" itemLabel="#{publico.descricao}" />
+                                    </b:selectOneMenu>
+                                    <h:outputText value="Capacidade"/>
+                                    <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="50%">
+                                        <b:inputText value="#{eventoBean.evento.minimo}" mask="integer" fieldSize="sm" placeholder="Min. de participantes"/>
+                                        <b:inputText value="#{eventoBean.evento.maximo}" mask="integer" fieldSize="sm" placeholder="Máx. de participantes"/>
+                                    </h:panelGrid>
+                                    <h:outputText value="Qtd. salas"/>
+                                    <b:inputText value="#{eventoBean.evento.qtdSalas}" mask="integer" fieldSize="sm"  placeholder="Digite a quantidade de salas necessárias" />                                  
+                                    <h:outputText value="Classificação Indicativa"/>
+                                    <h:panelGrid columns="6" cellpadding="15px" cellspacing="15px" width="60%">
+                                        <b:radiobutton value="#{eventoBean.evento.classificao}" itemLabel="L " itemValue="Livre" />
+                                        <b:radiobutton value="#{eventoBean.evento.classificao}" itemLabel="10" itemValue="10" />
+                                        <b:radiobutton value="#{eventoBean.evento.classificao}" itemLabel="12" itemValue="12" />
+                                        <b:radiobutton value="#{eventoBean.evento.classificao}" itemLabel="14" itemValue="14" />
+                                        <b:radiobutton value="#{eventoBean.evento.classificao}" itemLabel="16" itemValue="16" />
+                                        <b:radiobutton value="#{eventoBean.evento.classificao}" itemLabel="18" itemValue="18" />
+                                    </h:panelGrid>
+                                    <h:outputText value="Data"  />
+                                    <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="50%">
+                                        <b:dateTimePicker
+                                            value="#{eventoBean.evento.abertura}"
+                                            fieldSize="sm"
+                                            label="Abertura"
+                                            mode="toggle-icon" 
+                                            showButtonPanel="true" 
+                                            format="DD/MM/YYYY"/>
+                                        <b:dateTimePicker 
+                                            value="#{eventoBean.evento.encerramento}"
+                                            fieldSize="sm"
+                                            label="Encerramento"
+                                            mode="toggle-icon" 
+                                            showButtonPanel="true" 
+                                            format="DD/MM/YYYY"/>
+                                    </h:panelGrid>
+                                </h:panelGrid>  
+                                <hr></hr>
+                                <b:commandButton look="success" action="#{eventoBean.cadastrarEvento()}" value="Enviar Solicitação"/>
+                            </h:form>
+                        </p:panel>
+                        <h:form>
+                            <p:dialog header="Cadastrar nova categoria" widgetVar="cadCategoria" minHeight="40" width="60%">
+                                <b:panelGrid col-spans="2,10">
+                                    <h:outputText value="Descrição"/>
+                                    <b:inputText value="#{categoriaBean.categoria.descricao}" size="50"/>
+                                    <b:panelGrid columns="1">
+                                        <b:commandButton action="#{categoriaBean.salvarCategoria()}"  value="Salvar" look="success" />
+                                    </b:panelGrid>
+                                </b:panelGrid>
+                            </p:dialog>
+                        </h:form>
+                        <h:form>
+                            <p:dialog header="Cadastrar público" widgetVar="cadPublico" minHeight="40" width="60%">
+                                <b:panelGrid col-spans="2,10">
+                                    <h:outputText value="Descrição"/>
+                                    <b:inputText value="#{publicoBean.publico.descricao}" size="50"/>
+                                    <b:panelGrid columns="1">
+                                        <b:commandButton action="#{publicoBean.salvarPublico()}"  value="Salvar" look="success" />
+                                    </b:panelGrid>
+                                </b:panelGrid>
+                            </p:dialog>
+                        </h:form>
                     </div>
                     <div>
                         <h:form id="formulario">
-                            <p:dataTable id="tabela" var="e" style="background-color: #000;"
-                                         emptyMessage="Nenhum registro incluido." paginator="true" rows="10">                    
+                            <p:dataTable value="#{eventoBean.lista}" id="tabela" var="e" style="background-color: #000;"
+                                         emptyMessage="Nenhum registro incluido." paginator="true" rows="10" >                    
                                 <f:facet name="header">  
                                     Lista de eventos
                                 </f:facet>
-                                <p:column headerText="ID" class="tab">
-                                    <h:outputText  />
+                                <p:column headerText="ID" class="tab" style="width: 40px">
+                                    <h:outputText value="#{e.idEvento}" />
                                 </p:column>
                                 <p:column headerText="Descrição" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{e.descricao}" />
                                 </p:column>
                                 <p:column headerText="Categoria" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{e.idCategoria.descricao}" />
                                 </p:column>
                                 <p:column headerText="Público Alvo" class="tab">
-                                    <h:outputText  />
+                                    <h:outputText value="#{e.idPublico.descricao}" />
                                 </p:column>
-                                <p:column headerText="Capacidade" class="tab">
-                                    <h:outputText  />
+                                <p:column headerText="Capacidade total" class="tab" style="width: 100px">
+                                    <h:outputText value="#{e.maximo + e.minimo}" />
                                 </p:column>
-                                <p:column headerText="Qtd. Salas" class="tab">
-                                    <h:outputText  />
+                                <p:column headerText="Qtd. Salas" class="tab" style="width: 80px">
+                                    <h:outputText value="#{e.qtdSalas}" />
                                 </p:column>
-                                <p:column headerText="Classificação" class="tab">
-                                    <h:outputText  />
+                                <p:column headerText="Classificação" class="tab" style="width: 110px">
+                                    <h:outputText value="#{e.classificao}" />
                                 </p:column>
-                                <p:column headerText="Editar/Excluir" class="tab">
+                                <p:column headerText="Data" class="tab" style="width: 200px">
+                                    <h:outputText value="#{e.abertura}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText> à 
+                                    <h:outputText value="#{e.encerramento}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Excluir" class="tab" style="width: 70px">
+                                    <h:form>
+                                        <p:commandButton action="#{eventoBean.excluirEvento()}" 
+                                                         icon="ui-icon-trash" 
+                                                         title="Remover"
+                                                         process="@form" update=":formulario:tabela">                          
+                                            <f:setPropertyActionListener value="#{e}" target="#{eventoBean.evento}" />
+                                        </p:commandButton>
+                                    </h:form>                                                                
                                 </p:column>
                             </p:dataTable>
                         </h:form>  

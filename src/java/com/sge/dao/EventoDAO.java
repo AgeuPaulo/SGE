@@ -8,6 +8,7 @@ package com.sge.dao;
 import com.sge.dao.entidades.Evento;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -22,5 +23,18 @@ public class EventoDAO extends GenericDAO<Evento> {
         Query queryUsr = em.createQuery("select u from Evento u", Evento.class);
         eventos = queryUsr.getResultList();
         return eventos;
+    }
+     
+     public Evento checarEvento(String descricao) {
+        try {
+            Evento evento = (Evento) em
+                    .createQuery(
+                            "SELECT u from Evento u where u.descricao = :descricao")
+                    .setParameter("descricao", descricao).getSingleResult();
+
+            return evento;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

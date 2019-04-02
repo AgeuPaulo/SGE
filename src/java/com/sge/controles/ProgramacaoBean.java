@@ -29,44 +29,55 @@ public class ProgramacaoBean implements Serializable {
     private List<Programacao> lista;
     private Evento evento = new Evento();
     private ProgramacaoDAO dao = new ProgramacaoDAO();
-    
+
     public ProgramacaoBean() {
         this.lista = dao.listaProgramacoes();
     }
-    
-    public void cadastrarProgramacao(){
+
+    public void cadastrarProgramacao() {
         this.programacao.setIdEvento(evento);
-        this.programacao.setHorario(this.programacao.getDataProg());
-        this.dao.salvar(programacao);
-        
-        programacao = new Programacao();
-        this.lista = this.dao.listaProgramacoes();
-        
-     mensagem("Aviso", "Cadastro realizado com sucesso");
+        if (validaData(this.programacao, this.programacao.getIdEvento())) {
+
+            this.programacao.setHorario(this.programacao.getDataProg());
+            this.dao.salvar(programacao);
+
+            programacao = new Programacao();
+            this.lista = this.dao.listaProgramacoes();
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "A data dessa programação é incorreta!",
+                            "Erro no cadastro!"));
+        }
     }
-    
-    public void mensagem(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+
+    private boolean validaData(Programacao p, Evento e) {
+        return p.getDataProg().after(e.getAbertura()) && p.getDataProg().before(e.getEncerramento());
     }
-    
-    /*public List<Programacao> programacaoEvento(){
-        
+
+    public List<Programacao> listaPorEvento(Evento ev) {
+
         this.lista = dao.listaProgramacoes();
-        
+
         List<Programacao> listaPorEvento = new ArrayList<>();
         Iterador<Programacao> programacoes = new Iterador<>(this.lista);
-        
+
         while (programacoes.hasNext()) {
             Programacao nova = (Programacao) programacoes.next();
-            if (nova.getIdEvento().getIdEvento().equals(evento.getIdEvento())) {
+            if (nova.getIdEvento().getIdEvento().equals(ev.getIdEvento())) {
                 listaPorEvento.add(nova);
             }
         }
-        
+
         return listaPorEvento;
-    }*/
-    
+    }
+
+    public void excluirProgramacao() {
+        dao.remover(programacao.getIdProg(), Programacao.class);
+
+        this.lista = dao.listaProgramacoes();
+    }
+
     public Programacao getProgramacao() {
         return programacao;
     }

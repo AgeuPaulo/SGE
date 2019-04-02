@@ -38,23 +38,54 @@ public class EventoBean {
     }
 
     public void cadastrarEvento() {
-        evento.setIdCategoria(categoria);
-        evento.setIdPublico(publico);
+        if (dao.checarEvento(evento.getDescricao()) == null) {
+            if (validaData(evento)) {
+                if (evento.getMaximo() > evento.getMinimo()) {
+                    evento.setIdCategoria(categoria);
+                    evento.setIdPublico(publico);
 
-        dao.salvar(evento);
+                    dao.salvar(evento);
 
-        this.evento = new Evento();
-        this.categoria = new Categoria();
-        this.publico = new Publico();
+                    this.evento = new Evento();
+                    this.categoria = new Categoria();
+                    this.publico = new Publico();
 
-        this.lista = dao.listaEventos();
+                    this.lista = dao.listaEventos();
 
-        mensagem("Aviso", "Cadastro realizado com sucesso");
+                    mensagem("Aviso", "Cadastro realizado com sucesso");
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(
+                            null,
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "Capacidade Max. menor que a mínima",
+                                    "Erro no cadastro!"));
+                }
+            } else {
+                FacesContext.getCurrentInstance().addMessage(
+                        null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "As datas do evento estão incorretas!",
+                                "Erro no cadastro!"));
+            }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Evento já cadastrado!!",
+                            "Erro no cadastro!"));
+        }
     }
 
+    private boolean validaData(Evento e) {
+        return e.getEncerramento().after(e.getAbertura());
+    }
+    
     public void mensagem(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public void excluirEvento() {
+        dao.remover(evento.getIdEvento(), Evento.class);
+
+        this.lista = dao.listaEventos();
     }
 
     public void setEvento(Evento evento) {
