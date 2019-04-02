@@ -1,0 +1,10 @@
+FUNCIONALIDADE: Acessar o sistema.
+o sistema deve solicitar login e senha para o funcionário ter acesso aos dados.
+Dado que o funcionário tenha um login e senha autorizados, o sistema dará o acesso necessário para as demais funcionalidades.
+
+Cenário: Tela de login
+Dado que o funcionária precise cadastrar, agendar ou administrar algo no sistema.
+E tenha seu cadastro atualizado
+Quando ele colocar seu login e senha
+E colocar entrar
+Então aparecerá a tela de cadastro, financeiro, agenda e administração.
