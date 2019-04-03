@@ -1,0 +1,10 @@
+FUNCIONALIDADE: Acessar o módulo financeiro.
+o sistema deve solicitar login e senha para o funcionário ter acesso ao módulo financeiro
+Dado que o funcionário tenha um login e senha autorizados, o sistema dará o acesso necessário para o módulo financeiro.
+
+Cenário: Tela do módulo financeiro
+Dado que o funcionária preencha a parte de investimento e custos
+Quando aparecer a listra de palestrantes disponíveis o funcionário terá que selecionar os palestrantes que deseja, através de um check box
+E logo após preencher local e nome do equipamento.
+Então selecionar uma categoria de equipamento
+E confirmar o cadastro.
