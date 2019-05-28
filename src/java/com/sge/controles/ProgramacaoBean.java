@@ -14,8 +14,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -36,19 +34,14 @@ public class ProgramacaoBean implements Serializable {
 
     public void cadastrarProgramacao() {
         this.programacao.setIdEvento(evento);
-        if (validaData(this.programacao, this.programacao.getIdEvento())) {
+       
 
             this.programacao.setHorario(this.programacao.getDataProg());
             this.dao.salvar(programacao);
 
             programacao = new Programacao();
             this.lista = this.dao.listaProgramacoes();
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "A data dessa programação é incorreta!",
-                            "Erro no cadastro!"));
-        }
+       
     }
 
     private boolean validaData(Programacao p, Evento e) {
