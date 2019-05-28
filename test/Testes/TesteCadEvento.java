@@ -5,16 +5,21 @@
  */
 package Testes;
 
+import com.sge.dao.EventoDAO;
+import com.sge.dao.entidades.Evento;
+import java.util.Date;
 import junit.framework.TestCase;
 import org.junit.Test;
 
 public class TesteCadEvento extends TestCase{
     
+    EventoDAO dao = new EventoDAO();
+    
     public TesteCadEvento(){}
     
     @Test
     public void testCadastrarEvento(){
-        
+     
     }
     
 }
