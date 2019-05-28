@@ -5,7 +5,10 @@
  */
 package com.sge.dao;
 
+import com.google.gson.Gson;
 import com.sge.dao.entidades.Usuario;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -18,6 +21,8 @@ import javax.persistence.Query;
 public class UsuarioDAO extends GenericDAO<Usuario> {
     
     private EntityManager em = jUtil.getEM();
+    private List<Usuario> listaUsuario = null;
+    private Gson gson;
     
      public List<Usuario> listaUsuarios() {
         List<Usuario> usuarios = null;
@@ -28,13 +33,25 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
      
      public Usuario checarUsuario(String login, String senha) {
         try {
-            Usuario usuario = (Usuario) em
-                    .createQuery(
-                            "SELECT u from Usuario u where u.login = :login and u.senha = :senha")
-                    .setParameter("login", login)
-                    .setParameter("senha", senha).getSingleResult();
+            gson = new Gson();
+            Client client = Client.create();
+            WebResource webResource = client.resource("http://35.193.227.229/SODT-WEBSERVER/");
 
-            return usuario;
+            listaUsuario = gson.fromJson(webResource.path("usuarios").get(String.class), List.class);
+
+            for (Usuario user : listaUsuario) {
+                if (user.getLogin().equals(login)) {
+                    if (user.getSenha().equals(senha)) {
+                        return user;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    return null;
+                }
+            }
+            return null;
+
         } catch (NoResultException e) {
             return null;
         }

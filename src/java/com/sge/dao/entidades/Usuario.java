@@ -43,7 +43,7 @@ public class Usuario implements EntityBase {
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "login")
-    private String login;
+    private String usuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 25)
@@ -54,6 +54,7 @@ public class Usuario implements EntityBase {
     @Size(min = 1, max = 15)
     @Column(name = "cargo")
     private String cargo;
+    private Empresa empresa;
 
     public Usuario() {
     }
@@ -63,7 +64,7 @@ public class Usuario implements EntityBase {
     }
 
     public Usuario( String login, String senha, String cargo) {
-        this.login = login;
+        this.usuario = login;
         this.senha = senha;
         this.cargo = cargo;
     }
@@ -77,11 +78,11 @@ public class Usuario implements EntityBase {
     }
 
     public String getLogin() {
-        return login;
+        return usuario;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.usuario = login;
     }
 
     public String getSenha() {
@@ -99,7 +100,7 @@ public class Usuario implements EntityBase {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,4 +122,18 @@ public class Usuario implements EntityBase {
     public String toString() {
         return "com.sergipeevent.dao.entidades.Usuario[ id=" + id + " ]";
     }    
+
+    /**
+     * @return the empresa
+     */
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    /**
+     * @param empresa the empresa to set
+     */
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 }
